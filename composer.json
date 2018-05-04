@@ -1,0 +1,30 @@
+{
+	"name" : "liuguang/filesystem",
+	"description" : "file storage component",
+	"type" : "library",
+	"homepage" : "http://blog.liuguangw.com",
+	"license" : "MIT",
+	"require" : {
+		"php" : ">=7.1",
+		"guzzlehttp/guzzle": "^6.3"
+	},
+	"keywords" : [
+		"file",
+		"storage"
+	],
+	"authors" : [{
+			"name" : "liuguang",
+			"email" : "67579722@qq.com",
+			"homepage" : "http://blog.liuguangw.com",
+			"role" : "Developer"
+		}
+	],
+	"support" : {
+		"email" : "67579722@qq.com"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"liuguang\\fs\\" : "src/"
+		}
+	}
+}
