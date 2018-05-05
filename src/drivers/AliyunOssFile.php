@@ -6,9 +6,11 @@ use GuzzleHttp\Client;
 use liuguang\fs\MimeHelper;
 use liuguang\fs\FsException;
 use Psr\Http\Message\ResponseInterface;
+use liuguang\fs\ParamChecker;
 
 class AliyunOssFile implements IFileSystem
 {
+    use ParamChecker;
 
     private $bucketName;
 
@@ -24,6 +26,13 @@ class AliyunOssFile implements IFileSystem
 
     public function __construct(array $config)
     {
+        $this->checkConfig($config, [
+            'bucketName',
+            'accessKeyId',
+            'accessKeySecret',
+            'httpContext',
+            'apiHttpContext'
+        ]);
         $this->bucketName = $config['bucketName'];
         $this->accessKeyId = $config['accessKeyId'];
         $this->accessKeySecret = $config['accessKeySecret'];

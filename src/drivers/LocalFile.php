@@ -3,6 +3,7 @@ namespace liuguang\fs\drivers;
 
 use liuguang\fs\IFileSystem;
 use liuguang\fs\FsException;
+use liuguang\fs\ParamChecker;
 
 /**
  * 本地文件存储
@@ -12,6 +13,7 @@ use liuguang\fs\FsException;
  */
 class LocalFile implements IFileSystem
 {
+    use ParamChecker;
 
     private $saveDir;
 
@@ -19,6 +21,9 @@ class LocalFile implements IFileSystem
 
     public function __construct(array $config)
     {
+        $this->checkConfig($config, [
+            'saveDir'
+        ]);
         $this->saveDir = $config['saveDir'];
         if (isset($config['httpContext'])) {
             $this->httpContext = $config['httpContext'];

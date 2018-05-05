@@ -5,9 +5,11 @@ use liuguang\fs\IFileSystem;
 use liuguang\fs\FsException;
 use GuzzleHttp\Client;
 use liuguang\fs\MimeHelper;
+use liuguang\fs\ParamChecker;
 
 class QiniuFile implements IFileSystem
 {
+    use ParamChecker;
 
     private $region;
 
@@ -37,6 +39,13 @@ class QiniuFile implements IFileSystem
 
     public function __construct(array $config)
     {
+        $this->checkConfig($config, [
+            'region',
+            'bucketName',
+            'accessKey',
+            'secretKey',
+            'httpContext'
+        ]);
         $this->region = $config['region'];
         $this->bucketName = $config['bucketName'];
         $this->accessKey = $config['accessKey'];

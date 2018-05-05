@@ -6,9 +6,11 @@ use GuzzleHttp\Client;
 use liuguang\fs\FsException;
 use liuguang\fs\MimeHelper;
 use Psr\Http\Message\ResponseInterface;
+use liuguang\fs\ParamChecker;
 
 class QcloudCosFile implements IFileSystem
 {
+    use ParamChecker;
 
     private $region;
 
@@ -42,6 +44,14 @@ class QcloudCosFile implements IFileSystem
      */
     public function __construct(array $config)
     {
+        $this->checkConfig($config, [
+            'region',
+            'bucketName',
+            'appId',
+            'secretId',
+            'secretKey',
+            'httpContext'
+        ]);
         $this->region = $config['region'];
         $this->bucketName = $config['bucketName'];
         $this->appId = $config['appId'];
