@@ -126,7 +126,6 @@ class LocalFile implements IFileSystem
         if ($content === false) {
             throw new FsException('读取文件' . $distPath . '失败');
         }
-        return $content;
     }
 
     /**
